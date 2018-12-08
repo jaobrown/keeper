@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Segment, Form, Button } from "semantic-ui-react";
 
 const emptyNote = {
-  title: '',
-  details: ''
-}
+  title: "",
+  details: ""
+};
 
 class NoteForm extends Component {
   state = {
@@ -13,27 +13,27 @@ class NoteForm extends Component {
 
   onFormSubmit = evt => {
     evt.preventDefault();
-    // if (this.state.note.id) {
-    //   this.props.updateNote(this.state.note)
-    // } else {
-    //   this.props.createNote(this.state.note);
-    // }
-    console.log(this.state)
+    if (this.state.note.id) {
+      this.props.updateNote(this.state.note);
+    } else {
+      this.props.createNote(this.state.note);
+      // console.log(this.state.note);
+    }
   };
 
-//   componentDidMount() {
-//     if (this.props.selectedNote !== null) {
-//       this.setState({
-//         note: this.props.selectedNote
-//       })
-//     }
-//   }
+  componentDidMount() {
+    if (this.props.selectedNote !== null) {
+      this.setState({
+        note: this.props.selectedNote
+      });
+    }
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedNote !== this.props.selectedNote) {
       this.setState({
         note: nextProps.selectedNote || emptyNote
-      })
+      });
     }
   }
 

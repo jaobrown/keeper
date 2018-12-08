@@ -12,7 +12,7 @@ class NoteList extends Component {
             deleteNote={deleteNote}
             key={note.id}
             note={note}
-            noteOpen={onNoteOpen}
+            onNoteOpen={onNoteOpen}
           />
         ))}
       </div>

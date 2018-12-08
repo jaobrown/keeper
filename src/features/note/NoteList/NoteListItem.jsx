@@ -18,14 +18,14 @@ class NoteListItem extends Component {
         <Segment clearing>
           <span>{note.details}</span>
           <Button
-            // onClick={deleteNote(note.id)}
+            onClick={deleteNote(note.id)}
             as="a"
             color="red"
             floated="right"
             content="Delete"
           />
           <Button
-            // onClick={onNoteOpen(note)}
+            onClick={onNoteOpen(note)}
             as="a"
             color="teal"
             floated="right"

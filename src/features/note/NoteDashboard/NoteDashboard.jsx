@@ -28,7 +28,8 @@ const notesList = [
 class NoteDashboard extends Component {
   state = {
     notes: notesList,
-    isOpen: false
+    isOpen: false,
+    selectedNote: null
   };
 
   handleFormOpen = () => {
@@ -44,16 +45,45 @@ class NoteDashboard extends Component {
     });
   };
 
+  handleUpdateNote = (updatedNote) => {
+    this.setState({
+      notes: this.state.notes.map(note => {
+        if (note.id === updatedNote.id) {
+          return Object.assign({}, updatedNote);
+        } else {
+          return note
+        }
+      }),
+      isOpen: false,
+      selectedNote: null
+    })
+  };
+
+  handleOpenNote = noteToOpen => () => {
+    this.setState({
+      selectedNote: noteToOpen,
+      isOpen: true
+    });
+  };
+
   handleCreateNote = newNote => {
     newNote.id = cuid();
-    const updatedNotes = [...this.state.Note, newNote];
+    const updatedNotes = [...this.state.notes, newNote];
     this.setState({
       notes: updatedNotes,
       isOpen: false
     });
   };
 
+  handleDeleteNote = (noteId) => () => {
+    const updatedNotes = this.state.notes.filter(e => e.id !== noteId);
+    this.setState({
+      notes: updatedNotes
+    })
+  };
+
   render() {
+    const {selectedNote} = this.state;
     return (
       <div>
         <Grid>
@@ -73,7 +103,7 @@ class NoteDashboard extends Component {
           {this.state.isOpen && (
             <NoteForm
               updateNote={this.handleUpdateNote}
-              // selectedNote={selectedNote}
+              selectedNote={selectedNote}
               handleFormClose={this.handleFormClose}
               createNote={this.handleCreateNote}
             />
