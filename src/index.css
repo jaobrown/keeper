@@ -82,6 +82,7 @@ body {
 }
 
 .ui.menu .item>img:not(.ui) {
+  margin-right: 1.5em;
   filter: invert(100) !important;
 }
 

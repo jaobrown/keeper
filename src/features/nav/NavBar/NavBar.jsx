@@ -8,6 +8,7 @@ class NavBar extends Component {
         <Container>
           <Menu.Item header>
             <img src="assets/logo.png" alt="logo" />
+            Keeper
           </Menu.Item>
           <Menu.Item position="right">
             <Button
